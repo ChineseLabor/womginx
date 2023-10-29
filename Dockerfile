@@ -30,7 +30,7 @@ FROM nginx:stable-alpine
 # default environment variables in case a normal user doesn't specify it
 ENV PORT=80
 # set SAFE_BROWSING to any value to enable it
-#ENV SAFE_BROWSING=1
+ENV SAFE_BROWSING=0
 
 COPY --from=builder /opt/womginx /opt/womginx
 RUN cp /opt/womginx/nginx.conf /etc/nginx/nginx.conf

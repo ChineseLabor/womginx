@@ -198,6 +198,7 @@
                     if (removeElem.parentNode) {
                         removeElem.parentNode.insertBefore(style, removeElem);
                     }
+                    // testing this stuff
                     removeElem.remove();
                 }
             } else {
@@ -223,11 +224,15 @@
         window._wb_wombat.rewriteElem = function (elem) {
             // convert link spreadsheet into inline style tags for
             // js to handle the heavy lifting of regexing everything
+            //indenter BLEHH
             if (elem && elem.tagName === "LINK" && elem.rel === "stylesheet"
                 && elem.getAttribute("href").indexOf("data:text/css") !== 0) {
-                // addStyle(elem.getAttribute("href"), elem);
+                return addStyle(elem.getAttribute("href"), elem);
                 // return true;
             } else if (elem.tagName === "STYLE") {
+                // testing bleh
+                //return addStyle(elem.textContent, elem)
+                //return addStyleContent(elem.textContent, null, elem, true)
                 // addStyleContent(elem.textContent, "", elem);
                 // return true;
             }
@@ -239,9 +244,9 @@
             for (var i = 0; i < elements.length; i++) {
                 // rewrite img tags regardless, since nginx replaces it with src to handle
                 // script tags but not srcset of the img tags
-                if (elements[i].tagName !== "IMG" && elements[i].hasAttribute(processed_flag_attribute)) {
-                    continue;
-                }
+               // if (elements[i].tagName !== "IMG" && elements[i].hasAttribute(processed_flag_attribute)) {
+                 //   continue;
+                //}
                 if (elements[i].tagName === "SCRIPT" && absoluteMatch.test(elements[i].src)) {
                     var script = elements[i].cloneNode();
                     elements[i].parentNode.insertBefore(script, elements[i]);
